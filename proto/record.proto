@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package record;
+option go_package="ggithub.com/romanzimoglyad/memcached/proto";
+
+service RecordService {
+  rpc GetRecord(GetRecordRequest) returns (GetRecordResponse) {};
+  rpc SetRecords(SetRecordsRequest) returns (Empty) {};
+  rpc DeleteRecord(DeleteRecordRequest) returns (Empty) {};
+}
+message Record {
+  string key = 1;
+  string value = 2;
+}
+
+message GetRecordRequest {
+  repeated string keys = 1;
+}
+
+message GetRecordResponse {
+  repeated Record result = 1;
+}
+
+message SetRecordsRequest {
+    Record record = 1;
+}
+
+message DeleteRecordRequest {
+  string key = 1;
+}
+
+message Empty{}

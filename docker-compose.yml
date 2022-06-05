@@ -1,0 +1,19 @@
+version: '3'
+services:
+  memcached:
+    image: memcached
+    env_file:
+      - .env
+    ports:
+      - 11212:11211
+  service:
+    image: "service"
+    ports:
+      - "8802:8801"
+    depends_on:
+      - memcached
+    environment:
+      MCD_MEMCACHED_ADR: memcached:11211
+    restart: always
+
+
