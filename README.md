@@ -13,6 +13,8 @@ make run
 
 make stop
 
+## Tests here: /memcached/internal/handler/testing
+
 ## Example of the configuration used
 
 Below is a list of variables that should be used to run the project:

@@ -4,10 +4,6 @@ run:
   issues-exit-code: 1
   modules-download-mode: readonly
   tests: true
-  skip-dirs:
-    - test
-    - migrations
-#  skip-files:
 
 output:
   format: colored-line-number
@@ -16,7 +12,7 @@ output:
 
 linters-settings:
   gocyclo:
-    min-complexity: 10
+    min-complexity: 20
   govet:
     check-shadowing: false
   goconst:
@@ -43,7 +39,6 @@ linters:
 
 issues:
   exclude-rules:
-    #   исключены правила, указывающие на аббревиатуры в именах (пример ошибки линтера: Id => ID)
     - linters:
         - revive
       text: "var.*should|type.*should|struct field.*should|method.*should|func.*should|const.*should|type.*consider|func.*consider"

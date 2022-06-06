@@ -19,6 +19,7 @@ func NewClient(tcpConnPool *TcpConnPool) (*Client, error) {
 		TcpConnPool: tcpConnPool,
 	}, nil
 }
+
 func (c *Client) Get(keys ...string) (out []model.Record, err error) {
 	conn, err := c.get()
 

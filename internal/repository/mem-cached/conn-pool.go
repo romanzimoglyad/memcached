@@ -41,6 +41,15 @@ func NewConnPool(cfg *TcpConfig) (*TcpConnPool, error) {
 	return pool, nil
 }
 
+func (t *TcpConnPool) Close() {
+	if t.idleConns == nil {
+		return
+	}
+	for _, conn := range t.idleConns {
+		conn.Close()
+	}
+}
+
 type connRequest struct {
 	connChan chan *connection
 	errChan  chan error
@@ -168,14 +177,5 @@ func (t *TcpConnPool) handleConnectionRequest() {
 				}
 			}
 		}
-	}
-}
-
-func (t *TcpConnPool) Close() {
-	if t.idleConns == nil {
-		return
-	}
-	for _, conn := range t.idleConns {
-		conn.Close()
 	}
 }
